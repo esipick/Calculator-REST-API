@@ -22,16 +22,12 @@ class CalculateController extends Controller
      * @return json
      */
     public function add(Request $request){
-        $validData = $this->validateOperands($request);
-        if(!$validData){
-               return response()->json([
-                   'error' => ['status'=>422,
-                                'message'=>'Operands must be number.'],
-               ],422);
-           }
+        $validData = $request->operands;
+         sort($validData, SORT_NUMERIC);
+        $key = 'add_'.implode(array_flatten($validData),'');
 
-           //check if operends are exist in cache
-       $cacheExit = $this->checkExistInCache('add',$validData);
+        //check if operends are exist in cache
+       $cacheExit = $this->checkExistInCache($key,$validData);
         if($cacheExit){
            return response()->json([
                'data' => ['operands'=>$validData,
@@ -46,8 +42,8 @@ class CalculateController extends Controller
             $total += $allNumbers[$i];
         }
 
-        $this->storeInCache('add',$allNumbers);
-        $this->storeInCache('add_result',$total);
+        $this->storeInCache($key,$allNumbers);
+        $this->storeInCache($key.'_result',$total);
         return response()->json([
             'data' => ['operands'=>$allNumbers,
                         'result'=>$total],
@@ -61,13 +57,19 @@ class CalculateController extends Controller
      * @return json
      */
     public function subtract(Request $request){
-        $validData = $this->validateOperands($request);
-        if(!$validData){
+        $validData = $request->operands;
+        sort($validData, SORT_NUMERIC);
+        $key = 'subtract_'.implode(array_flatten($validData),'');
+
+        //check if operends are exist in cache
+        $cacheExit = $this->checkExistInCache($key,$validData);
+        if($cacheExit){
             return response()->json([
-                'error' => ['status'=>200,
-                    'message'=>'Operands must be number.'],
-            ],422);
+                'data' => ['operands'=>$validData,
+                    'result'=>$cacheExit],
+            ]);
         }
+
         $allNumbers = $validData;
 
         $total =$allNumbers[0];
@@ -75,6 +77,8 @@ class CalculateController extends Controller
             $total -= $allNumbers[$i];
         }
 
+        $this->storeInCache($key,$allNumbers);
+        $this->storeInCache($key.'_result',$total);
         return response()->json([
             'data' => ['operands'=>$allNumbers,
                 'result'=>$total],
@@ -88,13 +92,18 @@ class CalculateController extends Controller
      * @return json
      */
     public function multiply(Request $request){
-        $validData = $this->validateOperands($request);
-        if(!$validData){
+        $validData = $request->operands;
+        sort($validData, SORT_NUMERIC);
+        $key = 'multiply_'.implode(array_flatten($validData),'');
+        //check if operends are exist in cache
+        $cacheExit = $this->checkExistInCache($key,$validData);
+        if($cacheExit){
             return response()->json([
-                'error' => ['status'=>200,
-                    'message'=>'Operands must be number.'],
-            ],422);
+                'data' => ['operands'=>$validData,
+                    'result'=>$cacheExit],
+            ]);
         }
+
         $allNumbers = $validData;
 
         $total =$allNumbers[0];
@@ -102,6 +111,8 @@ class CalculateController extends Controller
             $total *= $allNumbers[$i];
         }
 
+        $this->storeInCache($key,$allNumbers);
+        $this->storeInCache($key.'_result',$total);
         return response()->json([
             'data' => ['operands'=>$allNumbers,
                 'result'=>$total],
@@ -115,13 +126,17 @@ class CalculateController extends Controller
      * @return json
      */
     public function divide(Request $request){
-        $validData = $this->validateOperands($request);
-        if(!$validData){
+        $validData = $request->operands;
+        $key = 'divide_'.implode(array_flatten($validData),'');
+        //check if operends are exist in cache
+        $cacheExit = $this->checkExistInCache($key,$validData);
+        if($cacheExit){
             return response()->json([
-                'error' => ['status'=>200,
-                    'message'=>'Operands must be number.'],
-            ],422);
+                'data' => ['operands'=>$validData,
+                    'result'=>$cacheExit],
+            ]);
         }
+
         $allNumbers = $validData;
 
         $total =$allNumbers[0];
@@ -135,34 +150,12 @@ class CalculateController extends Controller
             $total /= $allNumbers[$i];
         }
 
+        $this->storeInCache($key,$allNumbers);
+        $this->storeInCache($key.'_result',$total);
         return response()->json([
             'data' => ['operands'=>$allNumbers,
                 'result'=>$total],
         ]);
-    }
-
-    /**
-     * Validation before mathematical operations on operand
-     *
-     * @param string $request  operands
-     * @return array | boolen
-     */
-
-    private function validateOperands($request){
-        if(empty($request->slugNum)){
-            return false;
-        }
-        if($request->slugNum){
-            $allNumbers = explode('/', $request->slugNum);
-            foreach($allNumbers as $numbers){
-                if(!preg_match('/^[0-9]+$/', $numbers)){
-                    if(!preg_match('/^[0-9]+(\\.[0-9]+)?$/', $numbers)){
-                        return false;
-                    }
-                }
-            }
-            return $allNumbers;
-        }
     }
 
     /**
