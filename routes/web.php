@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('add/{a}/{b}/{c}', 'CalculateController@add');
-Route::get('subtract/{a}/{b}/{c}', 'CalculateController@subtract');
-Route::get('multiply/{a}/{b}/{c}', 'CalculateController@multiply');
-Route::get('divide/{a}/{b}/{c}', 'CalculateController@divide');
+Route::get('add/{a}/{b}/{c?}', 'CalculateController@add');
+Route::get('subtract/{a}/{b}/{c?}', 'CalculateController@subtract');
+Route::get('multiply/{a}/{b}/{c?}', 'CalculateController@multiply');
+Route::get('divide/{a}/{b}', 'CalculateController@divide');
 
