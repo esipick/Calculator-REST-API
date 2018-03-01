@@ -18,10 +18,12 @@ This Application perform mathematical calculations like addition, subtract, divi
 *  Division http://localhost/divide/5/2/3
 
 ### Notes ###
-* if user request same query params the result should be returned from cache (default file Cache has been defined in Env) 
+* if user request same query params the result should be returned from cache (default file Cache has been defined in Env)
+*  
 
 ### Source Files ###
-* app\Http\Middleware\ValidateOperands.php
-* app\Http\Controllers\CalculateController.php
-* routes\web.php
+* [File 1](https://bitbucket.org/team-esipick/calculator/src/85cbf0feda2b6b2e826811241b544be632657de9/app/Http/Middleware/ValidateOperands.php?at=master) 
+* [File 2](https://bitbucket.org/team-esipick/calculator/src/85cbf0feda2b6b2e826811241b544be632657de9/app/Http/Controllers/CalculateController.php?at=master) 
+* [File 3](https://bitbucket.org/team-esipick/calculator/src/85cbf0feda2b6b2e826811241b544be632657de9/routes/web.php?at=master) 
+
 
