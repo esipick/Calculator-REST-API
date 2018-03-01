@@ -1,29 +1,21 @@
-# README #
+# Caculator #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This Application perform mathematical calculations like addition, subtract, division and multiplication on 'n'
+ number of operands.
+ 
+### Deployment Steps ###
 
-### What is this repository for? ###
+* Clone 
+* Composer install
+* cp .env.example to .env
+    
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Api EndPoints ###
 
-### How do I get set up? ###
+*  Addition http://localhost/add/4/3/4
+*  Multiplication http://localhost/multiply/5/6/7/6.4
+*  Subtraction http://localhost/subtract/4/3.4/1
+*  Division http://localhost/divide/5/2/3
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+### Notes ###
+* if user request same query params the result should be returned from cache 

@@ -165,6 +165,13 @@ class CalculateController extends Controller
         }
     }
 
+    /**
+     * Get operands from cache if exist.
+     *
+     * @param string $key  Cache Key
+     * @param array $data  Operands Array
+     * @return array | boolen
+     */
     private function checkExistInCache($key, $data){
         $cachedData =Cache::get($key);
         if(!$cachedData){
@@ -178,6 +185,13 @@ class CalculateController extends Controller
         return false;
     }
 
+    /**
+     * Store operands in cache cache if exist.
+     *
+     * @param string $key  Cache Key
+     * @param array $data  Operands Array
+     * @return array | boolen
+     */
     private function storeInCache($key, $data){
        Cache::set($key,$data,1440);
         return true;
