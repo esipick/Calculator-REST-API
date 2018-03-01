@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('add/{a}/{b}/{c?}', 'CalculateController@add');
-Route::get('subtract/{a}/{b}/{c?}', 'CalculateController@subtract');
-Route::get('multiply/{a}/{b}/{c?}', 'CalculateController@multiply');
-Route::get('divide/{a}/{b}', 'CalculateController@divide');
+Route::get('add/{slugNum?}', 'CalculateController@add')->where('slugNum', '(.*)');
+Route::get('subtract/{slugNum?}', 'CalculateController@subtract')->where('slugNum', '(.*)');
+Route::get('multiply/{slugNum?}', 'CalculateController@multiply')->where('slugNum', '(.*)');
+Route::get('divide/{slugNum?}', 'CalculateController@divide')->where('slugNum', '(.*)');
 
