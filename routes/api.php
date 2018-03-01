@@ -1,18 +1,15 @@
 <?php
+use Dingo\Api\Routing\Router;
 
-use Illuminate\Http\Request;
+$api = app(Router::class);
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+$api->version('v1', function (Router $api) {
+    $api->group(['prefix' => 'v1'], function(Router $api) {
+        $api->get('add/{slugNum?}', 'App\\Http\\Controllers\\CalculateController@add')->where('slugNum', '(.*)');
+        $api->get('subtract', 'App\\Http\\Controllers\\CalculateController@add');
+        $api->get('multiple', 'App\\Http\\Controllers\\CalculateController@add');
+        $api->get('divide', 'App\\Http\\Controllers\\CalculateController@add');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+    });
 });
