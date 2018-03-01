@@ -22,8 +22,8 @@ This Application perform mathematical calculations like addition, subtract, divi
 *  
 
 ### Source Files ###
-* [File 1](https://bitbucket.org/team-esipick/calculator/src/85cbf0feda2b6b2e826811241b544be632657de9/app/Http/Middleware/ValidateOperands.php?at=master) 
-* [File 2](https://bitbucket.org/team-esipick/calculator/src/85cbf0feda2b6b2e826811241b544be632657de9/app/Http/Controllers/CalculateController.php?at=master) 
-* [File 3](https://bitbucket.org/team-esipick/calculator/src/85cbf0feda2b6b2e826811241b544be632657de9/routes/web.php?at=master) 
+* [app/Http/Middleware/ValidateOperands.php](https://bitbucket.org/team-esipick/calculator/src/85cbf0feda2b6b2e826811241b544be632657de9/app/Http/Middleware/ValidateOperands.php?at=master) 
+* [app/Http/Controllers/CalculateController.php](https://bitbucket.org/team-esipick/calculator/src/85cbf0feda2b6b2e826811241b544be632657de9/app/Http/Controllers/CalculateController.php?at=master) 
+* [routes/web.php](https://bitbucket.org/team-esipick/calculator/src/85cbf0feda2b6b2e826811241b544be632657de9/routes/web.php?at=master) 
 
 
