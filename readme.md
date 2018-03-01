@@ -24,3 +24,4 @@ This Application perform mathematical calculations like addition, subtract, divi
 * app\Http\Middleware\ValidatedOperands.php
 * app\Http\Controllers\CalculateController.php
 * routes\web.php
+
